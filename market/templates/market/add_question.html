@@ -1,0 +1,8 @@
+{% if question_text %}
+  Added {{ question_text }}
+{% endif %}
+<form action="" method="post">
+  {% csrf_token %}
+  Question: <input type="text" name="question" />
+  <input type="submit" />
+</form>
