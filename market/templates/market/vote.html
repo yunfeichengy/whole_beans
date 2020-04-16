@@ -6,7 +6,10 @@
 
 <form action="" method="post">
 {% csrf_token %}
-{% for choice in question.choice_set.all %}
+<!-- question.choice_set.all returns all choice that has foreing key pointing to this question-->
+<!--choice_set is understood by django as all choice pointing to a question-->
+{% for choice in question.choice_set.all %} <!--in django template portion you can't call functions with arguments-->
+    <!--name relates the radio buttons. can only select 1 radio buttons-->
     <input type="radio" name="choice" value="{{ choice.id }}">
     {{ choice.choice_text }} (currently {{choice.votes}} votes)<br>
 {% endfor %}

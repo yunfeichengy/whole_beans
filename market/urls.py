@@ -13,10 +13,11 @@ urlpatterns = [
 
     # name is used to uniquely identify a path
 
-
     path('add', market.views.add_question),
     path('list', market.views.list_questions, name='list_question'),
 
     path('list2', market.views.list_questions2, name='list_question2'),
+
+    # here we capture this part of the url as an int and pass it to the view as a variable called question_id
     path('<int:question_id>/vote', market.views.vote, name='vote')
 ]

@@ -1,10 +1,13 @@
 {% for q in questions %}
+    <!-- two ways to access a url. second is preferred (using names) -->
   <p>
-    <a href="/polls/{{ q.id }}/vote">
+    <a href="/market/{{ q.id }}/vote">  <!-- hardcoded-->
       {{q.question_text}}
-    </a> 
+    </a>
+
     ({{q.pub_date}}) <br />
-    <a href="{% url 'vote' question_id=q.id %}">
+
+    <a href="{% url 'vote' question_id=q.id %}">  <!-- built in template tag. similar to reverse -->
       {{q.question_text}}
     </a>
   </p>
