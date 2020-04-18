@@ -14,7 +14,7 @@ class SignupForm(forms.Form):
     )
     
     email = forms.EmailField(
-      validators=[validate_mcgill_email], # can pass custom validators (functions you define)
+      validators=[validate_mcgill_email],  # can pass custom validators (functions you define)
       error_messages={'not_mcgill': 'mcgill members only'})  # here we override error message to print using same error code
     
     age = forms.IntegerField(required=False)  # age not required. okay to leave empty
@@ -33,4 +33,5 @@ class SignupForm(forms.Form):
 class LoginForm(forms.Form):
     username = forms.CharField()
     password = forms.CharField()
-    
+
+

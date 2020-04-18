@@ -1,0 +1,43 @@
+<ul id="buttons">
+    <li><a class="btn" href="../account/logout"> Logout </a></li>
+    <li><a class="btn" href="./listAllProduct"> view listed products only </a></li>
+    <li><a class="btn" href="./uploadProduct">My Cart </a></li> <!-- implementing cart right now... -->
+</ul>
+
+
+<h1>Upload a product!</h1>
+
+<form action="" method="post">
+  {% csrf_token %}
+  <div>
+      Brand of coffee: <input type="text" name="name" value="" />
+      {{form.name.errors}}
+  <div>
+  <div>
+      Price: <input type="text" name="price" value="" />
+      {{form.price.errors}}
+  </div>
+  <div>
+      Description: <input type="text" name="description" value="" />
+      {{form.description.errors}}
+  </div>
+  <div>
+      Inventory Count: <input type="text" name="inventoryCount" value="" />
+      {{ form.inventoryCount.errors }}
+  </div>
+
+
+  <input type="submit" value="upload this product">
+</form>
+
+<br> <br>
+
+<h1>All products</h1>
+{% for p in all_products %}
+    <p>
+        Product: {{ p.name }} <br />
+        Description: {{ p.description }} <br />
+        In stock: {{ p.inventoryCount }}
+    </p>
+    <hr>
+{% endfor %}
