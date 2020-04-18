@@ -1,0 +1,17 @@
+<h1>My listings</h1>
+
+{% if changeSuccess %}
+<p> Change has been reflected! </p>
+{% endif %}
+
+<hr>
+{% for p in my_products %}
+    <p>
+        id: {{ p.id }} <br />
+        Product: {{ p.name }} <br />
+        Description: {{ p.description }} <br />
+        Stock: {{ p.inventoryCount }}
+
+    </p>
+    <hr>
+{% endfor %}

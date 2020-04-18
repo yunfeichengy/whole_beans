@@ -76,8 +76,13 @@ def vote(request, question_id=None):
     question = questions[0]
     context = {'question': question}
 
+    # print("printing request here1", request)
+
     if request.method == 'POST':
         if 'choice' in request.POST:
+
+            # print("printing request here2: ", request, "\n", request.POST)
+
             choices = Choice.objects.filter(
                 id=int(request.POST['choice'])
             )

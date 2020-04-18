@@ -15,4 +15,4 @@ class Product(models.Model):
     description = models.CharField(max_length=1000)
     price = models.FloatField()
     inventoryCount = models.IntegerField()
-
+    time = models.DateTimeField(auto_now_add=True)

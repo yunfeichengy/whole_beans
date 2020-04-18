@@ -49,7 +49,7 @@ def do_login(request):
                 login(request, user)  # use session to store id of user
                 if 'next' in request.GET:
                     return HttpResponseRedirect(request.GET['next'])
-                return HttpResponseRedirect(reverse('acc_info'))
+                return HttpResponseRedirect(reverse('listAllproduct'))
             else:
                 form.add_error(None, 'Unable to log in')  # error is None
         context['form'] = form

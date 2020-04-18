@@ -1,8 +1,10 @@
 <h1>All products</h1>
+<hr>
 {% for p in all_products %}
     <p>
         {{ p.name }} <br />
         {{ p.description }} <br />
         {{ p.inventoryCount }}
     </p>
+    <hr>
 {% endfor %}
