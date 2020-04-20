@@ -52,17 +52,20 @@ def listAllProduct(request):
         )
         item.save()
 
-        # modify database. if first time adding to cart then a cart doesn't exist for this user. create cart
-        if not models.Order.objects.filter(owner=request.user).exists:
-            Cart = models.Order(
-                owner=request.user,
-                items=item
-            )
-            Cart.save()
-        # if Cart already exists1
-        else:
-            order = models.Order.objects.filter(owner=request.user)[0]
+
+        order = models.Order.objects.filter(owner=request.user)
+        if not order:  # owner is empty create an order and associate to the user
+            order = models.Order.objects.create(owner=request.user)
             order.items.add(item)
+            # order.save()
+            print(order)
+        else:
+            order = order[0]
+            order.items.add(item)
+
+
+
+
 
     return render(request, 'post/listAllProduct.html', context)
 
