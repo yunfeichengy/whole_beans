@@ -1,3 +1,21 @@
+<ul id="buttons">
+    <li><a class="btn" href="../account/logout"> Logout </a></li>
+    <li><a class="btn" href="./listAllProduct"> view listed products only </a></li>
+    <li><a class="btn" href="./uploadProduct">My Cart </a></li> <!-- implementing cart right now... -->
+    <li><a class="btn" href="./myProduct"> view MY uploads </a></li>
+</ul>
+
+<h1> Update Listing Info</h1>
+<form action ="" method="post">
+    {% csrf_token %}
+    Product ID that you want to update: <input type="text" name="productID" /> <br>
+    New Product name: <input type="text" name="productName" /><br>
+    New Description: <input type="text" name="productDescription" /><br>
+    New Stock: <input type="text" name="productStock" /><br>
+    New Price: <input type="text" name="productPrice" /><br>
+    <input  type="submit" value="Update Listing info">
+</form>
+
 <h1>My listings</h1>
 
 {% if changeSuccess %}
@@ -10,7 +28,8 @@
         id: {{ p.id }} <br />
         Product: {{ p.name }} <br />
         Description: {{ p.description }} <br />
-        Stock: {{ p.inventoryCount }}
+        Stock: {{ p.inventoryCount }} <br />
+        Price: {{ p.price }}
 
     </p>
     <hr>

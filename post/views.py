@@ -47,6 +47,22 @@ def uploadProduct(request):
 def myProduct(request):
     my_products = request.user.product_set.all()
     context = {'my_products': my_products}
+
+    if request.method == 'POST':
+        pID = int(request.POST['productID'])
+        productToModify = models.Product.objects.filter(id=pID)
+        if not productToModify:
+            return HttpResponseNotFound('<h1>Page not found</h1>')
+        productToModify = productToModify[0]
+        # modify
+        productToModify.name = escape(request.POST['productName'])
+        productToModify.description = escape(request.POST['productDescription'])
+        productToModify.inventoryCount = escape(request.POST['productStock'])
+        productToModify.price = float(request.POST['productPrice'])
+        productToModify.save()
+
+        context['changeSuccess'] = True
+
     return render(request, 'post/myProduct.html', context)
 
 
