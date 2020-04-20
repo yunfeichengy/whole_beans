@@ -1,11 +1,14 @@
 <ul id="buttons">
     <li><a class="btn" href="../account/logout"> Logout </a></li>
     <li><a class="btn" href="./listAllProduct"> view listed products only </a></li>
-    <li><a class="btn" href="./uploadProduct">My Cart </a></li> <!-- implementing cart right now... -->
-    <li><a class="btn" href="./myProduct"> view MY uploads </a></li>
+    <li><a class="btn" href="./uploadProduct"> Upload an item </a></li> <!-- implementing cart right now... -->
+    <li><a class="btn" href="./myProduct"> view MY uploads + modify listings</a></li>
+    <li><a class="btn" href="./myCart">view MY cart + checkout </a></li>
 </ul>
 
 <h1> Update Listing Info</h1>
+
+<h2> Modify Listing </h2>
 <form action ="" method="post">
     {% csrf_token %}
     Product ID that you want to update: <input type="text" name="productID" /> <br>
@@ -15,12 +18,22 @@
     New Price: <input type="text" name="productPrice" /><br>
     <input  type="submit" value="Update Listing info">
 </form>
+{% if updateSuccess %}
+    <p> <b>Change has been reflected! </b> </p>
+{% endif %}
+
+<h2> Delete Listing </h2>
+<form action ="" method="post">
+    {% csrf_token %}
+    product ID that you want to delete: <input type="text" name="productIDDelete" /> <br>
+    <input  type="submit" value="Delete this product">
+</form>
+{% if deleteSuccess %}
+    <p><b> Product has been deleted. </b></p>
+{% endif %}
+
 
 <h1>My listings</h1>
-
-{% if changeSuccess %}
-<p> Change has been reflected! </p>
-{% endif %}
 
 <hr>
 {% for p in my_products %}

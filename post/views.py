@@ -25,14 +25,50 @@ def post(request):
 
 @login_required
 def listAllProduct(request):
-    all_products = models.Product.objects.all().order_by('time')
+    all_products = models.Product.objects.all().order_by('-time')
     context = {'all_products': all_products}
-    return render(request, 'post/listAllProduct.html', context)
 
+    if request.method == 'POST':
+        addCart_productId = int(request.POST['addCartProductId'])
+        product_toAddToCart = models.Product.objects.filter(id=addCart_productId)
+        if not product_toAddToCart:
+            return HttpResponseNotFound('<h1>Page not found</h1>')
+        product_toAddToCart = product_toAddToCart[0]
+        stockCount = product_toAddToCart.inventoryCount
+
+        context['addCartName'] = product_toAddToCart.name
+        addCart_quantity = int(request.POST['quantityToAddToCart'])
+
+        if stockCount < addCart_quantity:  # check the amount user wants to add to cart is less than total stock
+            context['stockFailure'] = True
+            return render(request, 'post/listAllProduct.html', context)
+
+        context['addCardQuantity'] = addCart_quantity
+
+        # create orederItem
+        item = models.OrderItem(
+            quantity=addCart_quantity,
+            product=product_toAddToCart
+        )
+        item.save()
+
+        # modify database. if first time adding to cart then a cart doesn't exist for this user. create cart
+        if not models.Order.objects.filter(owner=request.user).exists:
+            Cart = models.Order(
+                owner=request.user,
+                items=item
+            )
+            Cart.save()
+        # if Cart already exists1
+        else:
+            order = models.Order.objects.filter(owner=request.user)[0]
+            order.items.add(item)
+
+    return render(request, 'post/listAllProduct.html', context)
 
 @login_required
 def uploadProduct(request):
-    context = {'all_products': models.Product.objects.all()}
+    context = {'all_products': models.Product.objects.all().order_by('-time')}
     if request.method == 'POST':
         form = forms.UploadProductForm(request.POST)
         if form.is_valid():
@@ -44,24 +80,46 @@ def uploadProduct(request):
 
 
 @login_required
+def listAllMyCart(request):
+    context = {}
+    order = models.Order.objects.filter(owner=request.user)[0]
+
+    context['cartItems'] = order.get_cart_items()
+    context['cartSum'] = order.get_cart_total()
+    return render(request, 'post/myCart.html', context)
+
+
+@login_required
 def myProduct(request):
-    my_products = request.user.product_set.all()
+    my_products = request.user.product_set.all().order_by('-time')
     context = {'my_products': my_products}
 
     if request.method == 'POST':
-        pID = int(request.POST['productID'])
-        productToModify = models.Product.objects.filter(id=pID)
-        if not productToModify:
-            return HttpResponseNotFound('<h1>Page not found</h1>')
-        productToModify = productToModify[0]
-        # modify
-        productToModify.name = escape(request.POST['productName'])
-        productToModify.description = escape(request.POST['productDescription'])
-        productToModify.inventoryCount = escape(request.POST['productStock'])
-        productToModify.price = float(request.POST['productPrice'])
-        productToModify.save()
+        if 'productID' in request.POST:
+            pID = int(request.POST['productID'])
+            productToModify = models.Product.objects.filter(id=pID)
+            if not productToModify:
+                return HttpResponseNotFound('<h1>Page not found</h1>')
+            productToModify = productToModify[0]
+            # modify
+            productToModify.name = escape(request.POST['productName'])
+            productToModify.description = escape(request.POST['productDescription'])
+            productToModify.inventoryCount = int(request.POST['productStock'])
+            productToModify.price = float(request.POST['productPrice'])
+            productToModify.save()
 
-        context['changeSuccess'] = True
+            context['updateSuccess'] = True
+
+        if 'productIDDelete' in request.POST:
+            pID = int(request.POST['productIDDelete'])
+            productToModify = models.Product.objects.filter(id=pID)
+            if not productToModify:
+                return HttpResponseNotFound('<h1>Page not found</h1>')
+
+            productToModify = productToModify[0]
+            productToModify.delete()
+
+            context['deleteSuccess'] = True
 
     return render(request, 'post/myProduct.html', context)
 

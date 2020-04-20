@@ -1,0 +1,27 @@
+<ul id="buttons">
+    <li><a class="btn" href="../account/logout"> Logout </a></li>
+    <li><a class="btn" href="./listAllProduct"> view listed products only </a></li>
+    <li><a class="btn" href="./uploadProduct"> Upload an item </a></li> <!-- implementing cart right now... -->
+    <li><a class="btn" href="./myProduct"> view MY uploads + modify listings</a></li>
+    <li><a class="btn" href="./myCart">view MY cart + checkout </a></li>
+</ul>
+
+<h1> Make Purchase</h1>
+<form>
+    {% csrf_token %}
+    Your shipping Address: <input type="text" name="shipAddress">
+    <input type="button" value="Place Order">
+</form>
+
+<h1> Items in Cart</h1>
+Total amount: ${{ cartSum }}
+{% for item in cartItems %}
+    <hr>
+    Quantity: {{item.quantity}} <br>
+    Name: {{item.product.name }}<br>
+    Price: {{ item.product.price }} <br>
+    Description: {{ item.product.description }} <br>
+
+{% endfor %}
+
+

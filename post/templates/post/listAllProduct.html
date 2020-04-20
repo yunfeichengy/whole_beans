@@ -1,17 +1,38 @@
 <ul id="buttons">
     <li><a class="btn" href="../account/logout"> Logout </a></li>
     <li><a class="btn" href="./listAllProduct"> view listed products only </a></li>
-    <li><a class="btn" href="./uploadProduct">My Cart </a></li> <!-- implementing cart right now... -->
-    <li><a class="btn" href="./myProduct"> view MY uploads </a></li>
+    <li><a class="btn" href="./uploadProduct"> Upload an item</a></li> <!-- implementing cart right now... -->
+    <li><a class="btn" href="./myProduct"> view MY uploads + modify listings</a></li>
+    <li><a class="btn" href="./myCart">view MY cart + checkout </a></li>
 </ul>
+
+{% if addCartName and addCardQuantity%}
+Successfully added {{ addCardQuantity }} of {{ addCartName }} to your card!
+{% elif stockFailure %}
+    Sorry, there wasn't enough stocks for {{ addCartName }}
+{% endif %}
+
+<h1>Add item to my cart</h1>
+<form action="" method="post">
+    {% csrf_token %}
+    Enter identification number of the item you wish to add to cart.
+    <input type="number" name="addCartProductId" min="1"> <br>
+
+    Select the quantity to add to cart:
+    <input type="number" name="quantityToAddToCart" min="1"> <br>
+    <input type="submit" value="Add to my cart">
+</form>
 
 <h1>All products</h1>
 <hr>
+
+{% csrf_token %}
 {% for p in all_products %}
     <p>
-        {{ p.name }} <br />
-        {{ p.description }} <br />
-        {{ p.inventoryCount }}
+        Identification Number: {{ p.id }} <br />
+        Product name: {{ p.name }} <br />
+        Description: {{ p.description }} <br />
+        Stock: {{ p.inventoryCount }} <br /> <br />
     </p>
     <hr>
 {% endfor %}
