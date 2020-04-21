@@ -21,7 +21,7 @@ Total amount: ${{ cartSum }}
     Name: {{item.product.name }}<br>
     Price: {{ item.product.price }} <br>
     Description: {{ item.product.description }} <br>
-
+    <img src="{{  item.product.image.url }}" alt="picture of {{ item.product.name }}" /> <br />
 {% endfor %}
 
 

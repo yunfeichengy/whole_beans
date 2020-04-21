@@ -1,9 +1,9 @@
 {% include "./header.html" %}
-
+{% load static %}
 
 <h1>Upload a product!</h1>
 
-<form action="" method="post">
+<form action="" method="post" enctype="multipart/form-data">
   {% csrf_token %}
   <div>
       Brand of coffee: <input type="text" name="name" value="" />
@@ -21,6 +21,10 @@
       Inventory Count: <input type="text" name="inventoryCount" value="" />
       {{ form.inventoryCount.errors }}
   </div>
+  <div>
+      Image: <input type="file" name="image">
+      {{ form.image.errors }}
+  </div>
 
 
   <input type="submit" value="upload this product">
@@ -33,7 +37,9 @@
     <p>
         Product: {{ p.name }} <br />
         Description: {{ p.description }} <br />
-        In stock: {{ p.inventoryCount }}
+        In stock: {{ p.inventoryCount }} <br />
+        <img src="{{  p.image.url }}" alt="picture of {{ p.name }}" /> <br />
+
     </p>
     <hr>
 {% endfor %}

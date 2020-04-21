@@ -67,7 +67,7 @@ def listAllProduct(request):
 def uploadProduct(request):
     context = {'all_products': models.Product.objects.all().order_by('-time')}
     if request.method == 'POST':
-        form = forms.UploadProductForm(request.POST)
+        form = forms.UploadProductForm(request.POST, request.FILES)
         if form.is_valid():
            newProduct = form.save(commit=False)
            newProduct.owner = request.user
@@ -79,7 +79,10 @@ def uploadProduct(request):
 @login_required
 def listAllMyCart(request):
     context = {}
-    order = models.Order.objects.filter(owner=request.user)[0]
+    order = models.Order.objects.filter(owner=request.user)
+    if not order:
+        return HttpResponseNotFound('<h1>Please add to Cart first</h1>')
+    order = order[0]
     cart_items = order.get_cart_items()
     context['cartItems'] = cart_items
     context['cartSum'] = order.get_cart_total()

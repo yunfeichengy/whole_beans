@@ -9,6 +9,11 @@ class Post(models.Model):
     created = models.DateTimeField(auto_now_add=True)   # means I don't manually specify a date each time it's created
 
 
+def get_upload_path(instance, filename):
+    return './mediaRoot' \
+           + str(instance.owner.id) + '/' + filename
+
+
 class Product(models.Model):
     owner = models.ForeignKey(User, on_delete=models.CASCADE)
     name = models.CharField(max_length=100)
@@ -16,6 +21,7 @@ class Product(models.Model):
     price = models.FloatField()
     inventoryCount = models.IntegerField()
     time = models.DateTimeField(auto_now_add=True)
+    image = models.FileField(upload_to='documents/', null=True)  # FileField stores path to file
 
     def __str__(self):
         return self.name

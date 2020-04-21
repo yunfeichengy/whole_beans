@@ -10,4 +10,4 @@ class PostForm(ModelForm):
 class UploadProductForm(ModelForm):
     class Meta:
         model = Product
-        fields = ['name', 'description', 'price', 'inventoryCount']
+        fields = ['name', 'description', 'price', 'inventoryCount', 'image']

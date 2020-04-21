@@ -30,7 +30,8 @@ Purchase was successful! Your purchases are on the way!
         Identification Number: {{ p.id }} <br />
         Product name: {{ p.name }} <br />
         Description: {{ p.description }} <br />
-        Stock: {{ p.inventoryCount }} <br /> <br />
+        Stock: {{ p.inventoryCount }} <br />
+        <img src="{{  p.image.url }}" alt="picture of {{ p.name }}" /> <br />
     </p>
     <hr>
 {% endfor %}
