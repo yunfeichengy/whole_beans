@@ -157,10 +157,10 @@ def myProduct(request):
 @login_required
 def displayHistory(request):
     context = {}
-    history = request.user.history_set.all().order_by('-time')
-
-    # for h in history:
-    #     h.time = h.time.isoformat()
+    history = request.user.history_set.all()
+    if not history:
+        return HttpResponseNotFound('<h1>Page not found</h1>')
+    history = history.order_by('-time')
     context['history'] = history
 
     return render(request, 'post/purchaseHistory.html', context)
