@@ -97,9 +97,21 @@ def listAllMyCart(request):
             return render(request, 'post/myCart.html', context)
         else:  # all stock is safe. modify product database
             for item in cart_items:
+                # modify inventory count of each product
                 item.product.inventoryCount -= item.quantity
                 item.product.save()
-                item.delete()
+
+                # add to history of this user
+                history = models.History.objects.create(
+                    owner=request.user,
+                    productName=item.product.name,
+                    productDescription=item.product.description,
+                    productPrice=item.product.price,
+                    quantity=item.quantity
+                )
+
+                item.delete()  # delete from itemOrder table
+
 
         context['purchaseSuccessful'] = True
         return render(request, 'post/listAllProduct.html', context)
@@ -140,6 +152,18 @@ def myProduct(request):
             context['deleteSuccess'] = True
 
     return render(request, 'post/myProduct.html', context)
+
+
+@login_required
+def displayHistory(request):
+    context = {}
+    history = request.user.history_set.all().order_by('-time')
+
+    # for h in history:
+    #     h.time = h.time.isoformat()
+    context['history'] = history
+
+    return render(request, 'post/purchaseHistory.html', context)
 
 
 # @login_required
