@@ -1,16 +1,11 @@
-<ul id="buttons">
-    <li><a class="btn" href="../account/logout"> Logout </a></li>
-    <li><a class="btn" href="./listAllProduct"> view listed products + add to cart </a></li>
-    <li><a class="btn" href="./uploadProduct"> Upload an item </a></li> <
-    <li><a class="btn" href="./myProduct"> view MY uploads + modify listings</a></li>
-    <li><a class="btn" href="./myCart">view MY cart + checkout </a></li>
-</ul>
+{% include "./header.html" %}
+
 
 <h1> Make Purchase</h1>
-<form>
+<form action="" method="post">
     {% csrf_token %}
     Your shipping Address: <input type="text" name="shipAddress">
-    <input type="button" value="Place Order">
+    <input type="submit" value="Place Order">
 </form>
 
 <h1> Items in Cart</h1>

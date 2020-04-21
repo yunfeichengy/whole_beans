@@ -3,6 +3,7 @@ from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse, HttpResponseNotFound, HttpResponseRedirect
 from django.utils.html import escape
 from django.utils import timezone
+from django.urls import reverse
 
 from . import forms
 from . import models
@@ -20,7 +21,6 @@ def post(request):
             new_post.save()
         context['form'] = form
     return render(request, 'post/post.html', context)
-
 
 
 @login_required
@@ -52,22 +52,16 @@ def listAllProduct(request):
         )
         item.save()
 
-
         order = models.Order.objects.filter(owner=request.user)
         if not order:  # owner is empty create an order and associate to the user
             order = models.Order.objects.create(owner=request.user)
             order.items.add(item)
-            # order.save()
-            print(order)
         else:
             order = order[0]
             order.items.add(item)
 
-
-
-
-
     return render(request, 'post/listAllProduct.html', context)
+
 
 @login_required
 def uploadProduct(request):
@@ -86,9 +80,30 @@ def uploadProduct(request):
 def listAllMyCart(request):
     context = {}
     order = models.Order.objects.filter(owner=request.user)[0]
-
-    context['cartItems'] = order.get_cart_items()
+    cart_items = order.get_cart_items()
+    context['cartItems'] = cart_items
     context['cartSum'] = order.get_cart_total()
+
+    if request.method == 'POST':
+        context['shipAddressReturn'] = escape(request.POST['shipAddress'] + 'change')
+        # check if all items are in stock
+        flag = False
+        for item in cart_items:
+            if item.quantity > item.product.inventoryCount:
+                flag = True
+
+        if flag:  # there was at least 1 item where the quantity in cart was > than stock
+            context['stockNotEnough'] = True
+            return render(request, 'post/myCart.html', context)
+        else:  # all stock is safe. modify product database
+            for item in cart_items:
+                item.product.inventoryCount -= item.quantity
+                item.product.save()
+                item.delete()
+
+        context['purchaseSuccessful'] = True
+        return render(request, 'post/listAllProduct.html', context)
+
     return render(request, 'post/myCart.html', context)
 
 

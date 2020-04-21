@@ -22,7 +22,7 @@ class Product(models.Model):
 
 
 class OrderItem(models.Model):
-    product = models.ForeignKey(Product, on_delete=models.SET_NULL, null=True)
+    product = models.ForeignKey(Product, on_delete=models.CASCADE, null=True)
     quantity = models.IntegerField()
 
     def __str__(self):
@@ -30,7 +30,7 @@ class OrderItem(models.Model):
 
 
 class Order(models.Model):
-    owner = models.OneToOneField(User, on_delete=models.CASCADE)
+    owner = models.OneToOneField(User, on_delete=models.CASCADE, null=True)
     items = models.ManyToManyField(OrderItem)
 
     def get_cart_items(self):
