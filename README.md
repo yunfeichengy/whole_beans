@@ -1,6 +1,6 @@
 # Welcome to Whole Beans Marketplace ☕️
 
-## To get things started:
+## To get things started
 run ```python manage.py runserver``` to start the server. <br />
 then, <br />
 use ```localhost:8000``` <br />
