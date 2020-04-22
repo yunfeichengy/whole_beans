@@ -1,13 +1,14 @@
 {% load static %}
-<img src="{% static 'photo/banner.jpg' %}">
+<html>
+<link rel="stylesheet" type="text/css" href="{% static 'post/headers.css' %}">
 
-<ul id="buttons">
-    <li><a class="btn" href="../account/logout"> Logout </a></li>
-    <li><a class="btn" href="./listAllProduct"> view listed products + add to cart </a></li>
-    <li><a class="btn" href="./uploadProduct"> Upload an item </a></li>
-    <li><a class="btn" href="./myProduct"> view MY uploads + modify listings</a></li>
-    <li><a class="btn" href="./myCart">view MY cart + checkout </a></li>
-    <li><a class="btn" href="./purchaseHistory"> view MY order history </a></li>
-</ul>
+<img class="center" src="{% static 'photo/whole-beans.png' %}">
 
-
+<div class="buttons">
+    <a class="btn" href="./listAllProduct"> Home </a>
+    <a class="btn" href="./uploadProduct"> Post </a>
+    <a class="btn" href="./myProduct"> My listings </a>
+    <a class="btn" href="./myCart"> Cart </a>
+    <a class="btn" href="./purchaseHistory"> Order history </a>
+    <a class="btn" href="../account/logout" style="float: right"> Logout </a>
+</div>

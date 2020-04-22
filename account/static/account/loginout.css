@@ -21,7 +21,7 @@
     background: #FFFFFF;
     max-width: 360px;
     margin: 0 auto 100px;
-    padding: 45px;
+    padding: 30px;
     text-align: center;
     box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
 }
@@ -112,13 +112,13 @@
 }
 
 body {
-    background: #76b852;
+    background: #8cb88b;
     /* fallback for old browsers */
-    background: -webkit-linear-gradient(right, #76b852, #8DC26F);
-    background: -moz-linear-gradient(right, #76b852, #8DC26F);
-    background: -o-linear-gradient(right, #76b852, #8DC26F);
-    background: linear-gradient(to left, #76b852, #8DC26F);
+    background: -webkit-linear-gradient(right, #8cb88b, rgb(105, 145, 82));
+    background: -moz-linear-gradient(right, #8cb88b, rgb(105, 145, 82));
+    background: -o-linear-gradient(right, #8cb88b, rgb(105, 145, 82));
+    background: linear-gradient(to left, #8cb88b, rgb(105, 145, 82));
     font-family: "Roboto", sans-serif;
-    -webkit-font-smoothing: antialiased;
+    /* -webkit-font-smoothing: antialiased; */
     -moz-osx-font-smoothing: grayscale;
 }

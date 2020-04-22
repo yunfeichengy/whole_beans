@@ -14,6 +14,14 @@ def validate_email(value):
         )
 
 
+def validate_uname_login(value):
+    if value.endswith('@hotmail.com') or value.endswith('@gmail.com') or value.endswith('@yahoo.com') or value.endswith('@yahoo.ca'):
+        raise ValidationError(
+            'Please use your username instead of email to login.',
+            code='invalid_uname'
+        )
+
+
 class SignupForm(forms.Form):
 
     # USERNAME
@@ -52,5 +60,6 @@ class SignupForm(forms.Form):
 
 
 class LoginForm(forms.Form):
-    username = forms.CharField()
+    username = forms.CharField(
+        validators=[validate_uname_login])
     password = forms.CharField()
