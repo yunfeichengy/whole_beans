@@ -1,7 +1,9 @@
 # Project directory
 
-## settings.py
+## Some reminders
+
+### settings.py
 * include new app in ```INSTALLED_APPS```.
 
-## urls.py
+### urls.py
 * include path to new app in ```urlpatterns```. 
