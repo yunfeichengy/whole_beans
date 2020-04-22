@@ -1,4 +1,4 @@
-# This application allows for users logging in and signing up.
+# account application allows users for logging in and signing up.
 
 ## Requirements
 ### Email
