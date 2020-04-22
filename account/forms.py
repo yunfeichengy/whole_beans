@@ -2,7 +2,7 @@ from django import forms
 from django.core.exceptions import ValidationError
 
 def validate_email(value):
-    if not value.endswith('hotmail.com') or not value.endswith('gmail.com') or not value.endswith('yahoo.com') or not value.endswith('yahoo.ca'):
+    if not value.endswith('@hotmail.com') or not value.endswith('@gmail.com') or not value.endswith('@yahoo.com') or not value.endswith('@yahoo.ca'):
         raise ValidationError(
             'Invalid email. This website requires hotmail, gmail, or yahoo email accounts.',  # error message to print
             code = 'invalid_email'                                                            # code so that we can override it if we want
