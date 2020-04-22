@@ -32,7 +32,7 @@
 }
 
 body {
-    background: #7ebccf;
+    /* background: #7ebccf; */
     /* fallback for old browsers */
     background: -webkit-linear-gradient(right, #7ebccf, rgb(115, 202, 137));
     background: -moz-linear-gradient(right, #7ebccf, rgb(115, 202, 137));
