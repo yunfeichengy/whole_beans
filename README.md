@@ -1,4 +1,4 @@
-# Welcome to Whole Beans Marketplace ☕️
+# Whole Beans Marketplace ☕️🌿
 
 ## To get things started
 Run ```python manage.py runserver``` in root directory to start the server. <br />
