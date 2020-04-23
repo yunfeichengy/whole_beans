@@ -1,0 +1,49 @@
+@import url(https://fonts.googleapis.com/css?family=Roboto:300);
+
+/* whole beans icon */
+.center {
+    position: relative;
+    margin: 0 auto 10px;
+    padding: 45px;
+    text-align: center;
+    display: block;
+}
+
+/* menu bar */
+.buttons {
+    background-color: rgb(153, 120, 72);
+    overflow: hidden;
+}
+
+.buttons a {
+    float: left;
+    color: #f2f2f2;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 17px;
+}
+
+.buttons a:hover {
+    background-color: rgb(165, 144, 113);
+    color: black;
+}
+
+/* page body */
+body {
+    /* background: #7ebccf; */
+    /* fallback for old browsers */
+    background: -webkit-linear-gradient(right, #7ebccf, rgb(115, 202, 137));
+    background: -moz-linear-gradient(right, #7ebccf, rgb(115, 202, 137));
+    background: -o-linear-gradient(right, #7ebccf, rgb(115, 202, 137));
+    background: linear-gradient(to left, #7ebccf, rgb(115, 202, 137));
+    font-family: "Roboto", sans-serif;
+    /* -webkit-font-smoothing: antialiased; */
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* Add a color to the active/current link */
+/* .buttons a.active {
+    background-color: rgb(123, 180, 85);
+    color: white;
+  } */

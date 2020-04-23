@@ -24,7 +24,7 @@ def post(request):
 
 
 @login_required
-def listAllProduct(request):
+def home(request):
     all_products = models.Product.objects.all().order_by('-time')
     context = {'all_products': all_products}
 
@@ -41,7 +41,7 @@ def listAllProduct(request):
 
         if stockCount < addCart_quantity:  # check the amount user wants to add to cart is less than total stock
             context['stockFailure'] = True
-            return render(request, 'post/listAllProduct.html', context)
+            return render(request, 'post/home.html', context)
 
         context['addCardQuantity'] = addCart_quantity
 
@@ -60,7 +60,7 @@ def listAllProduct(request):
             order = order[0]
             order.items.add(item)
 
-    return render(request, 'post/listAllProduct.html', context)
+    return render(request, 'post/home.html', context)
 
 
 @login_required
@@ -117,13 +117,13 @@ def listAllMyCart(request):
 
 
         context['purchaseSuccessful'] = True
-        return render(request, 'post/listAllProduct.html', context)
+        return render(request, 'post/home.html', context)
 
     return render(request, 'post/myCart.html', context)
 
 
 @login_required
-def myProduct(request):
+def myListings(request):
     my_products = request.user.product_set.all().order_by('-time')
     context = {'my_products': my_products}
 
@@ -154,7 +154,7 @@ def myProduct(request):
 
             context['deleteSuccess'] = True
 
-    return render(request, 'post/myProduct.html', context)
+    return render(request, 'post/myListings.html', context)
 
 
 @login_required
