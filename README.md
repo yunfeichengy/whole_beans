@@ -10,7 +10,7 @@ django version: 3.0.3 <br />
 ### macOS
 ```brew install openssl``` <br />
 ```python3 -m pip install -U channels``` <br />
-```brew install redis```
+```brew install redis```<br />
 ```python3 -m pip install channels_redis``` <br />
 
 ## To get things started
