@@ -1,11 +1,15 @@
 # Whole Beans Marketplace ☕️🌿
 
-## Related installations
+## Installing dependencies
+### Ubuntu
 django version: 3.0.3 <br />
-sudo apt-get install libssl-dev <br />
-python -m pip install -U channels <br />
-sudo apt-get install redis-server <br />
-python -m pip install channels_redis <br />
+```sudo apt-get install libssl-dev``` <br />
+```python -m pip install -U channels``` <br />
+```sudo apt-get install redis-server``` <br />
+```python -m pip install channels_redis``` <br />
+### macOS
+```brew install openssl``` <br />
+```brew install redis```
 
 ## To get things started
 Run ```python manage.py runserver``` in root directory to start the server. <br />
