@@ -4,12 +4,13 @@
 
 <img class="center" src="{% static 'photo/whole-beans.png' %}">
 
+
 <div class="buttons">
-    <a class="btn" href="./home"> Home </a>
-    <a class="btn" href="./uploadProduct"> Post </a>
-    <a class="btn" href="./myListings"> My listings </a>
-    <a class="btn" href="./myCart"> Cart </a>
-    <a class="btn" href="./purchaseHistory"> Order history </a>
-    <a class="btn" href="../chat"> Chat </a>
-    <a class="btn" href="../account/logout" style="float: right"> Logout </a>
+    <a class="btn" href=" {% url 'post' %}"> Home </a>
+    <a class="btn" href=" {% url 'uploadProduct'%} "> Post </a>
+    <a class="btn" href=" {% url 'listmyListings'%}"> My listings </a>
+    <a class="btn" href="{% url 'listMyCart' %}"> Cart </a>
+    <a class="btn" href=" {% url 'listOrderHistory' %}"> Order history </a>
+    <a class="btn" href="{% url 'index' %}"> Chat </a>
+    <a class="btn" href=" {% url 'logout' %}" style="float: right"> Logout </a>
 </div>

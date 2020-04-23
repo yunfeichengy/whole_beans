@@ -5,12 +5,15 @@
     <title>Chat Rooms</title>
 </head>
 <body>
-    <p>
-    <a href="{% url 'index' %}">Home</a>
-    <a href="{% url 'signup' %}">Signup</a>
-    <a href="{% url 'login' %}">Login</a>
-    <a href="{% url 'logout' %}">Logout</a>
-    </p>
+
+<div class="buttons">
+    <a class="btn" href="{% url 'index' %}"> Room Choice </a>
+    <a class="btn" href=" {% url 'uploadProduct'%} "> Post </a>
+    <a class="btn" href=" {% url 'listmyListings'%}"> My listings </a>
+    <a class="btn" href="{% url 'listMyCart' %}"> Cart </a>
+    <a class="btn" href=" {% url 'listOrderHistory' %}"> Order history </a>
+    <a class="btn" href=" {% url 'logout' %}" style="float: right"> Logout </a>
+</div>
 
     What chat room would you like to enter?<br/>
     <input id="room-name-input" type="text" size="100"/><br/>
