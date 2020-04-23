@@ -81,14 +81,16 @@ def listAllMyCart(request):
     context = {}
     order = models.Order.objects.filter(owner=request.user)
     if not order:
-        return HttpResponseNotFound('<h1>Please add to Cart first</h1>')
+        # return HttpResponseNotFound('<h1>Please add to Cart first</h1>')
+        return render(request, 'post/myCart.html', context)
     order = order[0]
     cart_items = order.get_cart_items()
     context['cartItems'] = cart_items
     context['cartSum'] = order.get_cart_total()
 
     if request.method == 'POST':
-        context['shipAddressReturn'] = escape(request.POST['shipAddress'] + 'change')
+        addr = escape(request.POST['shipAddress'])
+        context['shipAddressReturn'] = addr + 'change'
         # check if all items are in stock
         flag = False
         for item in cart_items:
@@ -110,7 +112,8 @@ def listAllMyCart(request):
                     productName=item.product.name,
                     productDescription=item.product.description,
                     productPrice=item.product.price,
-                    quantity=item.quantity
+                    quantity=item.quantity,
+                    address=addr
                 )
 
                 item.delete()  # delete from itemOrder table
@@ -162,9 +165,11 @@ def displayHistory(request):
     context = {}
     history = request.user.history_set.all()
     if not history:
-        return HttpResponseNotFound('<h1>Page not found. Try ordering first!</h1>')
-    history = history.order_by('-time')
-    context['history'] = history
+        # return HttpResponseNotFound('<h1>Page not found. Try ordering first!</h1>')
+        return render(request, 'post/purchaseHistory.html', context)
+    else:
+        history = history.order_by('-time')
+        context['history'] = history
 
     return render(request, 'post/purchaseHistory.html', context)
 

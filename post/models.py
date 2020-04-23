@@ -34,6 +34,7 @@ class History(models.Model):
     productDescription = models.CharField(max_length=1000)
     productPrice = models.FloatField()
     quantity = models.IntegerField()
+    address = models.CharField(max_length=1000, null=True)
 
     def __str__(self):
         return self.owner.username + '_____purchase time: _____' + str(self.time)

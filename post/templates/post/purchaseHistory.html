@@ -1,15 +1,25 @@
 {% include "./header.html" %}
 
 <h1> Your order history </h1>
-{% for h in history %}
-    <hr>
-<p>
-    Date purchased: {{ h.time }} <br>
-    Product Name: {{ h.productName }} <br>
-    Product description: {{ h.productDescription }} <br>
-    Quantity purchase: {{ h.quantity }} <br>
-    Price of 1 product: {{ h.productPrice }} <br>
 
-</p>
+{% if not history %}
+    <br>
+    <br>
+    Add to cart and checkout first!
+{% endif %}
 
-{% endfor %}
+{% if history%}
+    {% for h in history %}
+        <hr>
+    <p>
+        Date purchased: {{ h.time }} <br>
+        Product Name: {{ h.productName }} <br>
+        Product description: {{ h.productDescription }} <br>
+        Quantity purchase: {{ h.quantity }} <br>
+        Price of 1 product: {{ h.productPrice }} <br>
+        Shipping address: {{ h.address }} <br>
+    </p>
+
+    {% endfor %}
+
+{% endif %}
