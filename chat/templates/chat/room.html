@@ -1,26 +1,31 @@
+{% load static %}
 <!DOCTYPE html>
+<link rel="stylesheet" type="text/css" href="{% static 'chat/heading.css' %}">
+<link rel="shortcut icon" type="image/png" href="{% static 'photo/bean.png' %}">
+<img class="center" src="{% static 'photo/whole-beans.png' %}">
+
 <html>
+
 <head>
-    <meta charset="utf-8"/>
+    <meta charset="utf-8" />
     <title>Chat Room</title>
 </head>
+
 <body>
 
-{% load static %}
-<link rel="stylesheet" type="text/css" href="{% static '/post/heading.css' %}">
+    <div class="buttons">
+        <a class="btn" href=" {% url 'post' %}"> Home </a>
+        <a class="btn" href=" {% url 'uploadProduct'%} "> Post </a>
+        <a class="btn" href=" {% url 'listmyListings'%}"> My listings </a>
+        <a class="btn" href="{% url 'listMyCart' %}"> Cart </a>
+        <a class="btn" href=" {% url 'listOrderHistory' %}"> Order history </a>
+        <a class="btn" href="{% url 'index' %}"> Room Choice </a>
+        <a class="btn" href=" {% url 'logout' %}" style="float: right"> Logout </a>
+    </div>
 
-<div class="buttons">
-    <a class="btn" href="{% url 'index' %}"> Room Choice </a>
-    <a class="btn" href=" {% url 'uploadProduct'%} "> Post </a>
-    <a class="btn" href=" {% url 'listmyListings'%}"> My listings </a>
-    <a class="btn" href="{% url 'listMyCart' %}"> Cart </a>
-    <a class="btn" href=" {% url 'listOrderHistory' %}"> Order history </a>
-    <a class="btn" href=" {% url 'logout' %}" style="float: right"> Logout </a>
-</div>
-
-    <textarea id="chat-log" cols="100" rows="20"></textarea><br/>
-    <input id="chat-message-input" type="text" size="100"/><br/>
-    <input id="chat-message-submit" type="button" value="Send"/>
+    <textarea id="chat-log" cols="100" rows="20"></textarea><br />
+    <input id="chat-message-input" type="text" size="100" /><br />
+    <input id="chat-message-submit" type="button" value="Send" />
 </body>
 <script>
     //set roomName. passed in from view
@@ -33,25 +38,25 @@
         '/ws/chat/' + roomName + '/');
 
     //output received message to log
-    chatSocket.onmessage = function(e) {
+    chatSocket.onmessage = function (e) {
         var data = JSON.parse(e.data);
         var message = data['message'];
         document.getElementById('chat-log').value += (message + '\n');
     };
 
-    chatSocket.onclose = function(e) {
+    chatSocket.onclose = function (e) {
         console.error('Chat socket closed unexpectedly');
     };
 
     document.getElementById('chat-message-input').focus();
-    document.getElementById('chat-message-input').onkeyup = function(e) {
-        if (e.keyCode === 13) {  // enter, return
+    document.getElementById('chat-message-input').onkeyup = function (e) {
+        if (e.keyCode === 13) { // enter, return
             document.getElementById('chat-message-submit').click();
         }
     };
 
     // do something when submit button is clicked
-    document.getElementById('chat-message-submit').onclick = function(e) {
+    document.getElementById('chat-message-submit').onclick = function (e) {
         var messageInputDom = document.getElementById('chat-message-input');
         var message = messageInputDom.value;
         // send using chatSocket as JSON string
@@ -62,4 +67,5 @@
         messageInputDom.value = '';
     };
 </script>
+
 </html>
