@@ -52,7 +52,7 @@ def do_login(request):
                 # redirect paths
                 if 'next' in request.GET:
                     return HttpResponseRedirect(request.GET['next'])
-                return HttpResponseRedirect(reverse('listAllproduct'))  # go to marketplace main page
+                return HttpResponseRedirect(reverse('home'))  # go to marketplace main page
             else:
                 form.add_error(None, 'Unable to log in.')  # form.add_error, first param is None i.e. not field a specific error, second param message
         context['form'] = form
