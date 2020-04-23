@@ -12,7 +12,7 @@
     <form class="register-form" action="" method="post">
       {% csrf_token %}
       <!-- username -->
-      <input type="text" name="username" placeholder="name" value="{{form.data.username}}" />
+      <input type="text" name="username" placeholder="username" value="{{form.data.username}}" />
       {{ form.username.errors }}
       <!-- email -->
       <input type="text" name="email" placeholder="email address" value="{{form.data.email}}" />

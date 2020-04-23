@@ -1,21 +1,19 @@
 @import url(https://fonts.googleapis.com/css?family=Roboto:300);
 
+/* whole beans icon */
 .center {
     position: relative;
-    margin: 0 auto 50px;
+    margin: 0 auto 10px;
     padding: 45px;
     text-align: center;
     display: block;
-    margin: 0 auto;
 }
 
-/* Add a black background color to the top navigation */
+/* menu bar */
 .buttons {
     background-color: rgb(153, 120, 72);
     overflow: hidden;
 }
-
-/* Style the links inside the navigation bar */
 .buttons a {
     float: left;
     color: #f2f2f2;
@@ -24,13 +22,12 @@
     text-decoration: none;
     font-size: 17px;
 }
-
-/* Change the color of links on hover */
 .buttons a:hover {
     background-color: rgb(165, 144, 113);
     color: black;
 }
 
+/* page body */
 body {
     /* background: #7ebccf; */
     /* fallback for old browsers */

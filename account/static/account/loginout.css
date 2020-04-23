@@ -2,16 +2,15 @@
 
 .center {
     position: relative;
-    margin: 0 auto 50px;
+    margin: 0 auto 10px;
     padding: 45px;
     text-align: center;
     display: block;
-    margin: 0 auto;
 }
 
 .loginout-page {
-    width: 360px;
-    padding: 8% 0 0;
+    /* width: 360px; */
+    padding: 2% 0 0;
     margin: auto;
 }
 
