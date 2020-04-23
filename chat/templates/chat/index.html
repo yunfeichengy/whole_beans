@@ -1,40 +1,46 @@
+{% load static %}
 <!DOCTYPE html>
+<link rel="stylesheet" type="text/css" href="{% static 'chat/heading.css' %}">
+<link rel="shortcut icon" type="image/png" href="{% static 'photo/bean.png' %}">
+<img class="center" src="{% static 'photo/whole-beans.png' %}">
+
 <html>
+
 <head>
-    <meta charset="utf-8"/>
+    <meta charset="utf-8" />
     <title>Chat Rooms</title>
 </head>
+
 <body>
 
-{% load static %}
-<link rel="stylesheet" type="text/css" href="{% static '/post/heading.css' %}">
-
-<div class="buttons">
-    <a class="btn" href="{% url 'index' %}"> Room Choice </a>
-    <a class="btn" href=" {% url 'uploadProduct'%} "> Post </a>
-    <a class="btn" href=" {% url 'listmyListings'%}"> My listings </a>
-    <a class="btn" href="{% url 'listMyCart' %}"> Cart </a>
-    <a class="btn" href=" {% url 'listOrderHistory' %}"> Order history </a>
-    <a class="btn" href=" {% url 'logout' %}" style="float: right"> Logout </a>
-</div>
+    <div class="buttons">
+        <a class="btn" href=" {% url 'post' %}"> Home </a>
+        <a class="btn" href=" {% url 'uploadProduct'%} "> Post </a>
+        <a class="btn" href=" {% url 'listmyListings'%}"> My listings </a>
+        <a class="btn" href="{% url 'listMyCart' %}"> Cart </a>
+        <a class="btn" href=" {% url 'listOrderHistory' %}"> Order history </a>
+        <a class="btn" href="{% url 'index' %}"> Room Choice </a>
+        <a class="btn" href=" {% url 'logout' %}" style="float: right"> Logout </a>
+    </div>
 
 
-    What chat room would you like to enter?<br/>
-    <input id="room-name-input" type="text" size="100"/><br/>
-    <input id="room-name-submit" type="button" value="Enter"/>
+    What chat room would you like to enter?<br />
+    <input id="room-name-input" type="text" size="100" /><br />
+    <input id="room-name-submit" type="button" value="Enter" />
 
     <script>
         document.getElementById('room-name-input').focus();
-        document.getElementById('room-name-input').onkeyup = function(e) {
-            if (e.keyCode === 13) {  // enter, return
+        document.getElementById('room-name-input').onkeyup = function (e) {
+            if (e.keyCode === 13) { // enter, return
                 document.getElementById('room-name-submit').click();
             }
         };
 
-        document.getElementById('room-name-submit').onclick = function(e) {
+        document.getElementById('room-name-submit').onclick = function (e) {
             var roomName = document.getElementById('room-name-input').value;
             window.location.pathname = '/chat/' + roomName + '/';
         };
     </script>
 </body>
+
 </html>
