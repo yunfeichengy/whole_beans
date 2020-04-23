@@ -14,6 +14,7 @@
     background-color: rgb(153, 120, 72);
     overflow: hidden;
 }
+
 .buttons a {
     float: left;
     color: #f2f2f2;
@@ -22,6 +23,7 @@
     text-decoration: none;
     font-size: 17px;
 }
+
 .buttons a:hover {
     background-color: rgb(165, 144, 113);
     color: black;
