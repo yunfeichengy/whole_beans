@@ -12,6 +12,7 @@ django version: 3.0.3 <br />
 ```python3 -m pip install -U channels``` <br />
 ```brew install redis```<br />
 ```python3 -m pip install channels_redis``` <br />
+```brew services start redis```
 
 ## To get things started
 Run ```python manage.py runserver``` in root directory to start the server. <br />
