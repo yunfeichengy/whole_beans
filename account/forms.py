@@ -63,3 +63,4 @@ class LoginForm(forms.Form):
     username = forms.CharField(
         validators=[validate_uname_login])
     password = forms.CharField()
+

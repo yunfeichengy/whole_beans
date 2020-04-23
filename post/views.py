@@ -162,7 +162,7 @@ def displayHistory(request):
     context = {}
     history = request.user.history_set.all()
     if not history:
-        return HttpResponseNotFound('<h1>Page not found</h1>')
+        return HttpResponseNotFound('<h1>Page not found. Try ordering first!</h1>')
     history = history.order_by('-time')
     context['history'] = history
 
