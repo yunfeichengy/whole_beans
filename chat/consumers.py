@@ -4,16 +4,21 @@ import json
 from channels.auth import get_user, logout
 from django.contrib.auth.models import User
 
+
 class ChatConsumer(WebsocketConsumer):
+    # override the connect function
     def connect(self):
         self.room_name = self.scope['url_route']['kwargs']['room_name']
+        # create group name
         self.room_group_name = 'chat_%s' % self.room_name
         # Join room group
         async_to_sync(self.channel_layer.group_add)(
             self.room_group_name,
             self.channel_name
         )
-        
+
+        # redis stores for each group all the channels in that group
+
         user = self.scope['user']
         if user.is_authenticated:
           async_to_sync(self.channel_layer.group_add)(
@@ -23,6 +28,7 @@ class ChatConsumer(WebsocketConsumer):
 
         self.accept()
 
+    # handle case when client disconnects abruptly
     def disconnect(self, close_code):
         # Leave room group
         async_to_sync(self.channel_layer.group_discard)(
@@ -30,10 +36,11 @@ class ChatConsumer(WebsocketConsumer):
             self.channel_name
         )
 
-    # Receive message from WebSocket
+    # Receive message from WebSocket. also override
     def receive(self, text_data):
         text_data_json = json.loads(text_data)
         message = text_data_json['message']
+        # authentication middleware adds user to scope
         user = self.scope['user']
         
         if user.is_authenticated:
