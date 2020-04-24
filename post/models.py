@@ -1,6 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
-
+from django.db.models import F, Func
 
 class Post(models.Model):
     owner = models.ForeignKey(User, on_delete=models.CASCADE)  # each post is a foreign key to a user

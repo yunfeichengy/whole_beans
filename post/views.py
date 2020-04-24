@@ -8,6 +8,19 @@ from django.urls import reverse
 from . import forms
 from . import models
 
+# STRIPE API
+from django.conf import settings
+from django.views.generic.base import TemplateView
+
+
+# class HomePageView(TemplateView):
+#     template_name = 'myCart.html'
+def payCart():  
+    context = super().payCart()
+    context['key'] = settings.STRIPE_PUBLISHABLE_KEY
+    return context
+
+
 @login_required
 def post(request):
     # if GET request, construct this context and return it at end. all the posts that belong to a user
@@ -16,7 +29,8 @@ def post(request):
     if request.method == 'POST':
         form = forms.PostForm(request.POST)  # instantiate post object
         if form.is_valid():
-            new_post = form.save(commit=False)  # create a  model instance. commit=False means I'll save it later
+            # create a  model instance. commit=False means I'll save it later
+            new_post = form.save(commit=False)
             new_post.owner = request.user
             new_post.save()
         context['form'] = form
@@ -30,7 +44,8 @@ def home(request):
 
     if request.method == 'POST':
         addCart_productId = int(request.POST['addCartProductId'])
-        product_toAddToCart = models.Product.objects.filter(id=addCart_productId)
+        product_toAddToCart = models.Product.objects.filter(
+            id=addCart_productId)
         if not product_toAddToCart:
             return HttpResponseNotFound('<h1>Page not found</h1>')
         product_toAddToCart = product_toAddToCart[0]
@@ -69,9 +84,9 @@ def uploadProduct(request):
     if request.method == 'POST':
         form = forms.UploadProductForm(request.POST, request.FILES)
         if form.is_valid():
-           newProduct = form.save(commit=False)
-           newProduct.owner = request.user
-           newProduct.save()
+            newProduct = form.save(commit=False)
+            newProduct.owner = request.user
+            newProduct.save()
         context['form'] = form
     return render(request, 'post/uploadProduct.html', context)
 
@@ -118,7 +133,6 @@ def listAllMyCart(request):
 
                 item.delete()  # delete from itemOrder table
 
-
         context['purchaseSuccessful'] = True
         return render(request, 'post/home.html', context)
 
@@ -139,7 +153,8 @@ def myListings(request):
             productToModify = productToModify[0]
             # modify
             productToModify.name = escape(request.POST['productName'])
-            productToModify.description = escape(request.POST['productDescription'])
+            productToModify.description = escape(
+                request.POST['productDescription'])
             productToModify.inventoryCount = int(request.POST['productStock'])
             productToModify.price = float(request.POST['productPrice'])
             productToModify.save()
@@ -172,7 +187,6 @@ def displayHistory(request):
         context['history'] = history
 
     return render(request, 'post/purchaseHistory.html', context)
-
 
 # @login_required
 # def modifyListing(request, idToModify):

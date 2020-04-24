@@ -9,5 +9,6 @@ urlpatterns = [
     path('myListings', views.myListings, name='listmyListings'),
     path('myCart', views.listAllMyCart, name='listMyCart'),
     path('purchaseHistory', views.displayHistory, name='listOrderHistory'),
-
+    # STRIPE API
+    path('myCart', views.payCart, name='payCart'),
 ]

@@ -39,8 +39,10 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'account',
-    'post',
+    'post.apps.PostConfig', # ADDED PostConfig for STRIPE API
     'chat',
+    # STRIPE API
+    # 'payments.apps.PaymentsConfig',
 ]
 
 MIDDLEWARE = [
@@ -58,8 +60,7 @@ ROOT_URLCONF = 'whole_beans.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, 'templates')]
-        ,
+        'DIRS': [os.path.join(BASE_DIR, 'templates'), 'templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -140,3 +141,7 @@ CHANNEL_LAYERS = {
         },
     },
 }
+
+# settings.py
+STRIPE_SECRET_KEY = 'sk_test_Cs0JQ96XasH4WNsIqJOLmUDI00J71qnbvR'
+STRIPE_PUBLISHABLE_KEY = 'pk_test_6mG4YcTw3SfP1sPnIuSjVAE500KIrJZDtH'
