@@ -4,7 +4,7 @@
 
 Total: ${{ cartSum }}
 
-<form action="" method="post">
+<form action=" {% url 'thanks' %}" method="post">
     {% csrf_token %}
     <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
         data-key="pk_test_6mG4YcTw3SfP1sPnIuSjVAE500KIrJZDtH" data-description="Purchase from Whole Beans"

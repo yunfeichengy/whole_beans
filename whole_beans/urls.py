@@ -27,8 +27,8 @@ from django.shortcuts import redirect
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('account/', include('account.urls')),
-    path('', include('post.urls')),
+    path('post/', include('post.urls')),
     path('chat/', include('chat.urls')),
     # STRIPE API
-    path('', include('payments.urls')), 
+    path('', include('payments.urls')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

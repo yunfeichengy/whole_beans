@@ -93,7 +93,7 @@ def listAllMyCart(request):
     # scaling for STRIPE API
     context['paySum'] = order.get_cart_total() * 100
 
-    if request.method == 'POST':
+    if request.method == 'POST' and 'shipAddress' in request.POST:
         addr = escape(request.POST['shipAddress'])
         context['shipAddressReturn'] = addr + 'change'
         # check if all items are in stock
@@ -124,9 +124,11 @@ def listAllMyCart(request):
                 item.delete()  # delete from itemOrder table
 
         context['purchaseSuccessful'] = True
+
         return render(request, 'payments/confirmation.html', context)
 
-    return render(request, 'post/myCart.html', context)
+    else:
+        return render(request, 'post/myCart.html', context)
 
 
 @login_required
