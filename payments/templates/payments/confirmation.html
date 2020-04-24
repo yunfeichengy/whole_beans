@@ -1,0 +1,13 @@
+{% include "post/header.html" %}
+
+<h1> Order Confirmation </h1>
+
+Total: ${{ cartSum }}
+
+<form action="" method="post">
+    {% csrf_token %}
+    <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+        data-key="pk_test_6mG4YcTw3SfP1sPnIuSjVAE500KIrJZDtH" data-description="Purchase from Whole Beans"
+        data-amount="{{ paySum }}" data-locale="auto">
+    </script>
+</form>

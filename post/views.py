@@ -8,18 +8,6 @@ from django.urls import reverse
 from . import forms
 from . import models
 
-# STRIPE API
-from django.conf import settings
-from django.views.generic.base import TemplateView
-
-
-# class HomePageView(TemplateView):
-#     template_name = 'myCart.html'
-def payCart():  
-    context = super().payCart()
-    context['key'] = settings.STRIPE_PUBLISHABLE_KEY
-    return context
-
 
 @login_required
 def post(request):
@@ -102,6 +90,8 @@ def listAllMyCart(request):
     cart_items = order.get_cart_items()
     context['cartItems'] = cart_items
     context['cartSum'] = order.get_cart_total()
+    # scaling for STRIPE API
+    context['paySum'] = order.get_cart_total() * 100
 
     if request.method == 'POST':
         addr = escape(request.POST['shipAddress'])
@@ -134,7 +124,7 @@ def listAllMyCart(request):
                 item.delete()  # delete from itemOrder table
 
         context['purchaseSuccessful'] = True
-        return render(request, 'post/home.html', context)
+        return render(request, 'payments/confirmation.html', context)
 
     return render(request, 'post/myCart.html', context)
 

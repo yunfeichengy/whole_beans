@@ -22,11 +22,13 @@ from django.conf import settings
 from django.shortcuts import redirect
 
 # STRIPE API
-from django.urls import path, include
+# from django.urls import path, include
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('account/', include('account.urls')),
     path('', include('post.urls')),
     path('chat/', include('chat.urls')),
+    # STRIPE API
+    path('', include('payments.urls')), 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

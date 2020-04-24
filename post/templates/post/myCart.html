@@ -20,11 +20,6 @@ Your cart is empty. Add products to your cart first!
     {% csrf_token %}
     Your shipping Address: <input type="text" name="shipAddress">
     <input type="submit" value="Place Order">
-    <!-- STRIPE API -->
-    <script src="https://checkout.stripe.com/checkout.js" class="stripe-button" data-key="{{ key }}"
-        data-description="Purchase from Whole Beans" data-amount="{{ cartSum }}" data-locale="auto"
-        href="{% url 'payCart' %}">
-    </script>
 </form>
 
 <h1> Items in Cart</h1>
