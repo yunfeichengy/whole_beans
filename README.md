@@ -2,17 +2,18 @@
 
 ## Installing dependencies
 ### Ubuntu
-django version: 3.0.3 <br />
-```sudo apt-get install libssl-dev``` <br />
-```python -m pip install -U channels``` <br />
-```sudo apt-get install redis-server``` <br />
-```python -m pip install channels_redis``` <br />
+django version: 3.0.3\
+```sudo apt-get install libssl-dev```\
+```python -m pip install -U channels```\
+```sudo apt-get install redis-server```\
+```python -m pip install channels_redis```\
 ### macOS
-```brew install openssl``` <br />
-```python3 -m pip install -U channels``` <br />
-```brew install redis```<br />
-```python3 -m pip install channels_redis``` <br />
-```brew services start redis```
+```brew install openssl```\
+```python3 -m pip install -U channels```\
+```brew install redis```\
+```python3 -m pip install channels_redis```\
+```brew services start redis```\
+```pip install stripe```
 
 ## To get things started
 Run ```python manage.py runserver``` in root directory to start the server. <br />
