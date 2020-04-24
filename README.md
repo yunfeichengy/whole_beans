@@ -13,7 +13,7 @@ django version: 3.0.3\
 ```brew install redis```\
 ```python3 -m pip install channels_redis```\
 ```brew services start redis```\
-```pip install stripe```\
+```pip install stripe```
 
 ## To get things started
 Run ```python manage.py runserver``` in root directory to start the server. <br />
