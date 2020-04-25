@@ -15,6 +15,10 @@
     Sorry, there wasn't enough stocks for {{ addCartName }}
 {% endif %}
 
+{%if notExist %}
+There was no identification match!
+{% endif %}
+
 <div class="center">
     <h1>add item to my cart</h1>
     <form action="" method="post">
@@ -37,6 +41,7 @@
         Product name: {{ p.name }} <br />
         Description: {{ p.description }} <br />
         Stock: {{ p.inventoryCount }} <br />
+        Price: {{p.price }} <br />
         <img src="{{  p.image.url }}" alt="picture of {{ p.name }}" /> <br />
     </p>
     <hr>

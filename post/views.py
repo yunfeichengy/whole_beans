@@ -18,14 +18,15 @@ def home(request):
     # adding item to my cart
     if request.method == 'POST' \
             and 'addCartProductId' in request.POST \
-            and 'addCardQuantity' in request.POST:
+            and 'quantityToAddToCart' in request.POST:
 
         addCart_productId = int(request.POST['addCartProductId'])
         addCart_quantity = int(request.POST['quantityToAddToCart'])
 
         product_toAddToCart = models.Product.objects.filter(id=addCart_productId)
         if not product_toAddToCart:  # product doesnt exits
-            return HttpResponseNotFound('<h1>Page not found</h1>')
+            context['notExist'] = True
+            return render(request, 'post/home.html', context)
 
         product_toAddToCart = product_toAddToCart[0]
         stockCount = product_toAddToCart.inventoryCount
