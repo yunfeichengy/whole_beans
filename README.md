@@ -1,7 +1,7 @@
 # Whole Beans Marketplace ☕️🌿
 
 ## Installing dependencies
-Required django version: 3.0.3\
+Required django version: 3.0.3
 ### Ubuntu
 ```sudo apt-get install libssl-dev```\
 ```python -m pip install -U channels```\
