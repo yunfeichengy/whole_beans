@@ -31,5 +31,10 @@ connect to ```localhost:8000/admin``` <br />
 username: ```beanmaster``` <br />
 password: ```welovebeans``` <br />
 
+### Testng
+run "python manage.py test post" <br>
+Will test 3 things in the post app. <br>
+For more detail, go see the test.py in post folder
+
 ### Notes
 * Ignore .idea directory in root directory. .idea is for IDE specific use.

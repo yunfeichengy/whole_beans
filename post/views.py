@@ -10,22 +10,6 @@ from . import models
 
 
 @login_required
-def post(request):
-    # if GET request, construct this context and return it at end. all the posts that belong to a user
-    context = {'posts': request.user.post_set.all()}
-
-    if request.method == 'POST':
-        form = forms.PostForm(request.POST)  # instantiate post object
-        if form.is_valid():
-            # create a  model instance. commit=False means I'll save it later
-            new_post = form.save(commit=False)
-            new_post.owner = request.user
-            new_post.save()
-        context['form'] = form
-    return render(request, 'post/post.html', context)
-
-
-@login_required
 def home(request):
     all_products = models.Product.objects.all().order_by('-time')
     context = {'all_products': all_products}
@@ -172,8 +156,8 @@ def displayHistory(request):
     context = {}
     history = request.user.history_set.all()
     if not history:
-        # return HttpResponseNotFound('<h1>Page not found. Try ordering first!</h1>')
-        return render(request, 'post/purchaseHistory.html', context)
+        return HttpResponseNotFound('<h1>Page not found. Try ordering first!</h1>')
+        # return render(request, 'post/purchaseHistory.html', context)
     else:
         history = history.order_by('-time')
         context['history'] = history

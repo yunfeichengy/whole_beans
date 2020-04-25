@@ -2,6 +2,11 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.db.models import F, Func
 
+from django.utils import timezone
+import datetime
+
+
+
 class Post(models.Model):
     owner = models.ForeignKey(User, on_delete=models.CASCADE)  # each post is a foreign key to a user
     title = models.CharField(max_length=100)
@@ -25,6 +30,13 @@ class Product(models.Model):
 
     def __str__(self):
         return self.name
+
+    def is_updated_recently(self):
+        now = timezone.now()
+        return now - datetime.timedelta(days=1) <= self.time <= now
+
+    def get_description(self):
+        return self.description
 
 
 class History(models.Model):
