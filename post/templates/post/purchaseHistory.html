@@ -14,20 +14,19 @@ Add to cart and checkout first!
 {% endif %}
 
 {% if history%}
-{% for h in history %}
-<hr>
-<p>
-    Date purchased: {{ h.time }} <br>
-    Purchased from: {{ h.owner }} <br>
-    Product name: {{ h.productName }} <br>
-    Product description: {{ h.productDescription }} <br>
-    Units purchased: {{ h.quantity }} <br>
-    Price per unit: {{ h.productPrice }} <br>
-    Total: {{ h.total }} <br>
-    Shipping address: {{ h.address }} <br>
-</p>
+    {% for h in history %}
+        <hr>
+        <p>
+            Date purchased: {{ h.time }} <br>
+            Purchased from: {{ h.owner }} <br>
+            Product name: {{ h.productName }} <br>
+            Product description: {{ h.productDescription }} <br>
+            Units purchased: {{ h.quantity }} <br>
+            Price per unit: {{ h.productPrice }} <br>
+            Total: {{ h.total }} <br>
+            Shipping address: {{ h.address }} <br>
+        </p>
 
-{% endfor %}
-
+    {% endfor %}
 {% endif %}
 </div>

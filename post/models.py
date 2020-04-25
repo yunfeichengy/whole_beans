@@ -6,19 +6,6 @@ from django.utils import timezone
 import datetime
 
 
-
-class Post(models.Model):
-    owner = models.ForeignKey(User, on_delete=models.CASCADE)  # each post is a foreign key to a user
-    title = models.CharField(max_length=100)
-    content = models.CharField(max_length=10000)
-    created = models.DateTimeField(auto_now_add=True)   # means I don't manually specify a date each time it's created
-
-
-def get_upload_path(instance, filename):
-    return './mediaRoot' \
-           + str(instance.owner.id) + '/' + filename
-
-
 class Product(models.Model):
     owner = models.ForeignKey(User, on_delete=models.CASCADE)
     name = models.CharField(max_length=100)
@@ -75,3 +62,9 @@ class Order(models.Model):
 
     def __str__(self):
         return self.owner.username
+
+
+# ignore this. deleting it causes errors lol
+def get_upload_path(instance, filename):
+    return './mediaRoot' \
+           + str(instance.owner.id) + '/' + filename

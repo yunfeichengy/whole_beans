@@ -8,35 +8,34 @@
     <h1> my shopping cart 🛒</h1>
 
     {% if stockNotEnough %}
-    Sorry. There are not enough stocks for one of the items you placed in the cart. <br>
-    Cannot make purchase
+        Sorry. There are not enough stocks for one of the items you placed in the cart. <br>
+        Cannot make purchase.
     {% endif %}
 
     {% if not cartItems %}
-    <br>
-    <br>
-    Your cart is empty. 👀
+        <br>
+        <br>
+        Your cart is empty. 👀
     {% endif %}
 
     {% if cartItems %}
 
-    <h1> Make Purchase</h1>
-    <form action="" method="post">
-        {% csrf_token %}
-        Your shipping Address: <input type="text" name="shipAddress">
-        <input type="submit" value="Place Order">
-    </form>
+        <h1> Make Purchase</h1>
+        <form action="" method="post">
+            {% csrf_token %}
+            Your shipping Address: <input type="text" name="shipAddress">
+            <input type="submit" value="Place Order">
+        </form>
 
-    <h1> Items in Cart</h1>
-    Total: ${{ cartSum }}
-    {% for item in cartItems %}
-    <hr>
-    Quantity: {{item.quantity}} <br>
-    Name: {{item.product.name }}<br>
-    Price: {{ item.product.price }} <br>
-    Description: {{ item.product.description }} <br>
-    <img src="{{  item.product.image.url }}" alt="picture of {{ item.product.name }}" /> <br />
-    {% endfor %}
-
+        <h1> Items in Cart</h1>
+        Total: ${{ cartSum }}
+        {% for item in cartItems %}
+            <hr>
+            Quantity: {{item.quantity}} <br>
+            Name: {{item.product.name }}<br>
+            Price: {{ item.product.price }} <br>
+            Description: {{ item.product.description }} <br>
+            <img src="{{  item.product.image.url }}" alt="picture of {{ item.product.name }}" /> <br />
+        {% endfor %}
     {% endif %}
 </div>

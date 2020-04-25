@@ -22,8 +22,7 @@ class PostModelTests(TestCase):
         t = product.is_updated_recently()
         self.assertIs(t, True)
 
-
-    def test_sqLits_doesnt_enforce_max_length_limit(self):
+    def test_sqLite_doesnt_enforce_max_length_limit(self):
         product = Product(
             owner = None,
             name = 'p',
@@ -71,3 +70,4 @@ class PostModelTests(TestCase):
         length = len(order.get_cart_items())
         test = length == 3
         self.assertIs(test, True)
+

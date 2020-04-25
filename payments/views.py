@@ -20,11 +20,4 @@ class confirmation(TemplateView):
 @login_required
 def thanks(request):
     context = {}
-    # if request.method == 'POST':
-        # charge = stripe.Charge.create(
-        #     amount=500,
-        #     currency='usd',
-        #     description='A Django charge',
-        #     source=request.POST['stripeToken']
-        # )
     return render(request, 'payments/thanks.html', context)

@@ -6,14 +6,15 @@
 
 
 {% if purchaseSuccessful %}
-Purchase was successful! Your purchases are on the way!
+    Purchase was successful! Your purchases are on the way!
 {% endif %}
 
 {% if addCartName and addCardQuantity%}
-Successfully added {{ addCardQuantity }} of {{ addCartName }} to your cart!
+    Successfully added {{ addCardQuantity }} of {{ addCartName }} to your cart!
 {% elif stockFailure %}
-Sorry, there wasn't enough stocks for {{ addCartName }}
+    Sorry, there wasn't enough stocks for {{ addCartName }}
 {% endif %}
+
 <div class="center">
     <h1>add item to my cart</h1>
     <form action="" method="post">
