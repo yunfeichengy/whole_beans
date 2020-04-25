@@ -1,9 +1,5 @@
 # Whole Beans Marketplace ☕️🌿
 
-### Authors
-* Philip Cheng - 260784392
-* William Chien - 260746158
-
 ## Installing dependencies
 Required django version: 3.0.3
 ### Ubuntu
