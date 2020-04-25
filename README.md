@@ -1,5 +1,9 @@
 # Whole Beans Marketplace ☕️🌿
 
+### Authors
+* Philip Cheng - 260784392
+* William Chien - 260746158
+
 ## Installing dependencies
 Required django version: 3.0.3
 ### Ubuntu
@@ -35,10 +39,6 @@ password: ```welovebeans``` <br />
 run ```python manage.py test post```\
 The tester verifies 3 things in the post app.\
 For more detail, please refer to ```test.py``` in the ```Post``` folder.
-
-### Authors
-* Philip Cheng - 260784392
-* William Chien - 260746158
 
 ### Notes
 * Nil
