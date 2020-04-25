@@ -1,0 +1,38 @@
+@import url(https://fonts.googleapis.com/css?family=Roboto:300);
+
+/* whole beans icon */
+.modify {
+    position: relative;
+    margin: 0 auto 10px;
+    padding: 45px;
+    text-align: center;
+    display: block;
+}
+
+.modify input {
+    font-family: "Roboto", sans-serif;
+    outline: 0;
+    background: white;
+    border: 0;
+    box-sizing: border-box;
+    font-size: 14px;
+}
+/* 
+.button {
+    background-color: rgb(153, 120, 72);
+    overflow: hidden;
+    text-align: center;
+    position: relative;
+    float: left;
+    background: rgb(124, 207, 103);
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 17px;
+
+}
+
+.button:hover {
+    background-color: rgb(165, 144, 113);
+    color: black;
+} */
