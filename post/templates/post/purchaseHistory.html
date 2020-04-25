@@ -1,5 +1,10 @@
-{% include "./header.html" %}
+{% load static %}
+<!DOCTYPE html>
+{% include "post/header.html" %}
 
+<link rel="stylesheet" type="text/css" href="{% static 'post/history.css' %}">
+
+<div class="center">
 <h1> My order history 📜 </h1>
 
 {% if not history %}
@@ -25,3 +30,4 @@ Add to cart and checkout first!
 {% endfor %}
 
 {% endif %}
+</div>

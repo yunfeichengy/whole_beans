@@ -1,45 +1,51 @@
-{% include "./header.html" %}
 {% load static %}
+<!DOCTYPE html>
+{% include "post/header.html" %}
 
-<h1>Upload a product!</h1>
+<link rel="stylesheet" type="text/css" href="{% static 'post/upload.css' %}">
 
-<form action="" method="post" enctype="multipart/form-data">
-  {% csrf_token %}
-  <div>
-      Brand of coffee: <input type="text" name="name" value="" />
-      {{form.name.errors}}
-  <div>
-  <div>
-      Price: <input type="text" name="price" value="" />
-      {{form.price.errors}}
-  </div>
-  <div>
-      Description: <input type="text" name="description" value="" />
-      {{form.description.errors}}
-  </div>
-  <div>
-      Inventory Count: <input type="text" name="inventoryCount" value="" />
-      {{ form.inventoryCount.errors }}
-  </div>
-  <div>
-      Image: <input type="file" name="image">
-      {{ form.image.errors }}
-  </div>
+<div class="center">
+    <h1>Upload a product 🏷</h1>
+
+    <form action="" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div>
+            Brand of coffee: <input type="text" name="name" value="" />
+            {{form.name.errors}}
+            <div>
+                <div>
+                    Price: <input type="text" name="price" value="" />
+                    {{form.price.errors}}
+                </div>
+                <div>
+                    Description: <input type="text" name="description" value="" />
+                    {{form.description.errors}}
+                </div>
+                <div>
+                    Inventory Count: <input type="text" name="inventoryCount" value="" />
+                    {{ form.inventoryCount.errors }}
+                </div>
+                <div>
+                    Image: <input type="file" name="image">
+                    {{ form.image.errors }}
+                </div>
 
 
-  <input type="submit" value="upload this product">
-</form>
+                <input type="submit" value="upload this product">
+    </form>
+
+</div>
 
 <br> <br>
 
 <h1>All products</h1>
 {% for p in all_products %}
-    <p>
-        Product: {{ p.name }} <br />
-        Description: {{ p.description }} <br />
-        In stock: {{ p.inventoryCount }} <br />
-        <img src="{{  p.image.url }}" alt="picture of {{ p.name }}" /> <br />
+<p>
+    Product: {{ p.name }} <br />
+    Description: {{ p.description }} <br />
+    In stock: {{ p.inventoryCount }} <br />
+    <img src="{{  p.image.url }}" alt="picture of {{ p.name }}" /> <br />
 
-    </p>
-    <hr>
+</p>
+<hr>
 {% endfor %}

@@ -1,36 +1,42 @@
-{% include "./header.html" %}
+{% load static %}
+<!DOCTYPE html>
+{% include "post/header.html" %}
 
-<h1> My Cart 🛒</h1>
+<link rel="stylesheet" type="text/css" href="{% static 'post/listing.css' %}">
 
-{% if stockNotEnough %}
-Sorry. There are not enough stocks for one of the items you placed in the cart. <br>
-Cannot make purchase
-{% endif %}
+<div class="center">
+    <h1> My Cart 🛒</h1>
 
-{% if not cartItems %}
-<br>
-<br>
-Your cart is empty. Add products to your cart first!
-{% endif %}
+    {% if stockNotEnough %}
+    Sorry. There are not enough stocks for one of the items you placed in the cart. <br>
+    Cannot make purchase
+    {% endif %}
 
-{% if cartItems %}
+    {% if not cartItems %}
+    <br>
+    <br>
+    Your cart is empty. Add products to your cart first!
+    {% endif %}
 
-<h1> Make Purchase</h1>
-<form action="" method="post">
-    {% csrf_token %}
-    Your shipping Address: <input type="text" name="shipAddress">
-    <input type="submit" value="Place Order">
-</form>
+    {% if cartItems %}
 
-<h1> Items in Cart</h1>
-Total: ${{ cartSum }}
-{% for item in cartItems %}
-<hr>
-Quantity: {{item.quantity}} <br>
-Name: {{item.product.name }}<br>
-Price: {{ item.product.price }} <br>
-Description: {{ item.product.description }} <br>
-<img src="{{  item.product.image.url }}" alt="picture of {{ item.product.name }}" /> <br />
-{% endfor %}
+    <h1> Make Purchase</h1>
+    <form action="" method="post">
+        {% csrf_token %}
+        Your shipping Address: <input type="text" name="shipAddress">
+        <input type="submit" value="Place Order">
+    </form>
 
-{% endif %}
+    <h1> Items in Cart</h1>
+    Total: ${{ cartSum }}
+    {% for item in cartItems %}
+    <hr>
+    Quantity: {{item.quantity}} <br>
+    Name: {{item.product.name }}<br>
+    Price: {{ item.product.price }} <br>
+    Description: {{ item.product.description }} <br>
+    <img src="{{  item.product.image.url }}" alt="picture of {{ item.product.name }}" /> <br />
+    {% endfor %}
+
+    {% endif %}
+</div>

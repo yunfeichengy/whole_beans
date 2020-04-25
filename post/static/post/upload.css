@@ -1,0 +1,19 @@
+@import url(https://fonts.googleapis.com/css?family=Roboto:300);
+
+/* whole beans icon */
+.center {
+    position: relative;
+    margin: 0 auto 10px;
+    padding: 45px;
+    text-align: center;
+    display: block;
+}
+
+.center input {
+    font-family: "Roboto", sans-serif;
+    outline: 0;
+    background: white;
+    border: 0;
+    box-sizing: border-box;
+    font-size: 14px;
+}
