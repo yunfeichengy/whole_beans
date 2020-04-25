@@ -6,7 +6,7 @@ django version: 3.0.3\
 ```sudo apt-get install libssl-dev```\
 ```python -m pip install -U channels```\
 ```sudo apt-get install redis-server```\
-```python -m pip install channels_redis```\
+```python -m pip install channels_redis```
 ### macOS
 ```brew install openssl```\
 ```python3 -m pip install -U channels```\
@@ -32,9 +32,13 @@ username: ```beanmaster``` <br />
 password: ```welovebeans``` <br />
 
 ### Testng
-run "python manage.py test post" <br>
-Will test 3 things in the post app. <br>
-For more detail, go see the test.py in post folder
+run ```python manage.py test post```\
+The tester verifies 3 things in the post app.\
+For more detail, please refer to ```test.py``` in the ```Post``` folder.
+
+### Autors
+* Philip Cheng - 260784392
+* William Chien - 260746158
 
 ### Notes
-* Ignore .idea directory in root directory. .idea is for IDE specific use.
+* Nil
