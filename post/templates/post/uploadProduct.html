@@ -5,7 +5,7 @@
 <link rel="stylesheet" type="text/css" href="{% static 'post/upload.css' %}">
 
 <div class="center">
-    <h1>Upload a product 🏷</h1>
+    <h1>upload a product 🏷</h1>
 
     <form action="" method="post" enctype="multipart/form-data">
         {% csrf_token %}
@@ -38,7 +38,7 @@
 
 <br> <br>
 
-<h1>All products</h1>
+<h1>Marketplace 🌿</h1>
 {% for p in all_products %}
 <p>
     Product: {{ p.name }} <br />

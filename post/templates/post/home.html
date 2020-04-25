@@ -1,31 +1,36 @@
-{% include "./header.html" %}
+{% load static %}
+<!DOCTYPE html>
+{% include "post/header.html" %}
+
+<link rel="stylesheet" type="text/css" href="{% static 'post/listing.css' %}">
+
 
 {% if purchaseSuccessful %}
 Purchase was successful! Your purchases are on the way!
 {% endif %}
 
 {% if addCartName and addCardQuantity%}
-    Successfully added {{ addCardQuantity }} of {{ addCartName }} to your cart!
+Successfully added {{ addCardQuantity }} of {{ addCartName }} to your cart!
 {% elif stockFailure %}
-    Sorry, there wasn't enough stocks for {{ addCartName }}
+Sorry, there wasn't enough stocks for {{ addCartName }}
 {% endif %}
+<div class="center">
+    <h1>add item to my cart</h1>
+    <form action="" method="post">
+        {% csrf_token %}
+        Enter identification number of the item you wish to add to cart.
+        <input type="number" name="addCartProductId" min="1"> <br>
 
-<h1>Add item to my cart</h1>
-<form action="" method="post">
+        Select the quantity to add to cart:
+        <input type="number" name="quantityToAddToCart" min="1"> <br>
+        <input type="submit" value="Add to my cart">
+    </form>
+
+    <h1>Marketplace 🌿</h1>
+    <hr>
+
     {% csrf_token %}
-    Enter identification number of the item you wish to add to cart.
-    <input type="number" name="addCartProductId" min="1"> <br>
-
-    Select the quantity to add to cart:
-    <input type="number" name="quantityToAddToCart" min="1"> <br>
-    <input type="submit" value="Add to my cart">
-</form>
-
-<h1>All products</h1>
-<hr>
-
-{% csrf_token %}
-{% for p in all_products %}
+    {% for p in all_products %}
     <p>
         Identification Number: {{ p.id }} <br />
         Product name: {{ p.name }} <br />
@@ -34,4 +39,5 @@ Purchase was successful! Your purchases are on the way!
         <img src="{{  p.image.url }}" alt="picture of {{ p.name }}" /> <br />
     </p>
     <hr>
-{% endfor %}
+    {% endfor %}
+</div>
