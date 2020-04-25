@@ -17,14 +17,14 @@ Required django version: 3.0.3
 
 ## To get things started
 Run ```python manage.py runserver``` in root directory to start the server. <br />
-Then connect to ```localhost:8000``` <br />
-<u><b>Important Note: </b></u> Settings are not changed. will not run on deployment environment 
+Then connect to ```localhost:8000```. <br />
+<u><b>Important Note: </b></u> Settings are not changed. will not run on deployment environment.
 
 ### Database
-* to make changes to database: "python manage.py makemigrations"
-* to migrate: "python manage.py migrate"
-* username and password of admin is "username" & "password"
-* a random user that you can use is username=pikachu & password=123
+* to make changes to database: ```python manage.py makemigrations```
+* to migrate: ```python manage.py migrate```
+* username and password of admin is ```username``` & ```password```
+* a random user that you can use is username:```user1``` & password:```123```
 
 ### Superuser
 connect to ```localhost:8000/admin``` <br />
@@ -36,7 +36,7 @@ run ```python manage.py test post```\
 The tester verifies 3 things in the post app.\
 For more detail, please refer to ```test.py``` in the ```Post``` folder.
 
-### Autors
+### Authors
 * Philip Cheng - 260784392
 * William Chien - 260746158
 
